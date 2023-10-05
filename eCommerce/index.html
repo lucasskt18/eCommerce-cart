@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eCommerce Cart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body ng-app="eCommerceApp" ng-controller="CartController as cartCtrl">
+    <header>
+        <h1>eCommerce Cart</h1>
+    </header>
+
+    <main>
+        <section class="product-list">
+            <div class="product" ng-repeat="product in cartCtrl.products">
+                <img src="product.jpg" alt="{{ product.name }}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <p class="product-price">$ {{ product.price }}</p>
+                </div>
+                <button class="add-to-cart-btn" ng-click="cartCtrl.addToCart(product)">Add to Cart</button>
+            </div>
+        </section>
+
+        <section class="cart">
+            <h2>Your Cart</h2>
+            <ul class="cart-items">
+                <li ng-repeat="item in cartCtrl.cartItems">
+                    <img src="product.jpg" alt="{{ item.name }}" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <h3 class="cart-item-name">{{ item.name }}</h3>
+                        <p class="cart-item-price">$ {{ item.price }}</p>
+                    </div>
+                    <button class="remove-from-cart-btn" ng-click="cartCtrl.removeFromCart(item)">Remove</button>
+                </li>
+            </ul>
+            <div class="total">
+                <h3>Total: $ {{ cartCtrl.getTotal() }}</h3>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
